@@ -5,8 +5,17 @@ jobs:
 - job: BuildAndTest
   workspace: 
     clean: all 
+
   pool: my-personal-computer
-    
+  
+
+  variables:
+  subscription: Visual Studio Enterprise(5af9f377-83c8-4ec8-8520-953f65104850)
+  resourceGroup: storage_terraform_rg_habiib
+  storageAccount: storageacc017
+  container: my-files
+  anyTfChanges: false
+  tfstateFile: terraform.tfstate  
    
   steps: 
   - checkout: self
@@ -25,3 +34,31 @@ jobs:
       targetType: inline 
       script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
     displayName: 'Update build number'
+    
+    
+  - task: TerraformInstaller@0
+    displayName: install Terraform 
+    inputs:
+      terraformVersion: 'latest'
+
+  - task: TerraformTaskV1@0
+    displayName: terraform init
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
+      backendServiceArm: '$(subscription)'
+      backendAzureRmResourceGroupName: '$(resourceGroup)'
+      backendAzureRmStorageAccountName: '$(storageAccount)'
+      backendAzureRmContainerName: '$(container)'
+      backendAzureRmKey: '$(tfstateFile)'
+
+  - task: TerraformTaskV1@0
+    displayName: terraform plan -out=tfplan
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
+      commandOptions: '-out=tfplan'
+    # commandOptions: '-detailed-exitcode -out=tfplan'
+      environmentServiceNameAzureRM: '$(subscription)'
