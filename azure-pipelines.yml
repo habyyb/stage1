@@ -11,6 +11,7 @@ jobs:
   steps: 
   - task: gitversion/execute@0
     inputs:
+      targetPath: ./GitVersion.yml
       useConfigFile: true 
       configFilePath: ./GitVersion.yml' 
   - script: echo current version is $(GitVersion.SemVer) 
