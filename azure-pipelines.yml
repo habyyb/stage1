@@ -5,8 +5,7 @@ jobs:
 - job: BuildAndTest
   workspace: 
     clean: all 
-  pool: 
-    name: Self-Hosted-Agent 
+   
   steps: 
   - task: gitversion/execute@0
     inputs:
