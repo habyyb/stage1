@@ -1,6 +1,15 @@
 trigger: 
 - main 
 
+
+variables:
+  subscription: Visual Studio Enterprise(5af9f377-83c8-4ec8-8520-953f65104850)
+  resourceGroup: storage_terraform_rg_habiib
+  storageAccount: storageacc017
+  container: my-files
+  anyTfChanges: false
+  tfstateFile: terraform.tfstate  
+
 jobs: 
 - job: BuildAndTest
   workspace: 
@@ -9,13 +18,7 @@ jobs:
   pool: my-personal-computer
   
 
-  variables:
-  subscription: Visual Studio Enterprise(5af9f377-83c8-4ec8-8520-953f65104850)
-  resourceGroup: storage_terraform_rg_habiib
-  storageAccount: storageacc017
-  container: my-files
-  anyTfChanges: false
-  tfstateFile: terraform.tfstate  
+  
    
   steps: 
   - checkout: self
