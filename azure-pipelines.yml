@@ -11,6 +11,11 @@ jobs:
   steps: 
   - checkout: self
     fetchDepth: 0
+  - task: UseGitVersion@5
+    displayName: gitversion
+    inputs:
+      versionSpec: '5.x'
+      updateAssemblyInfo: true
   
   
   - task: gitversion/execute@0
