@@ -11,7 +11,7 @@ jobs:
   steps: 
   - task: gitversion/execute@0
     inputs:
-      targetPath: 'stage1' 
+    targetPath: 'stage1' 
     condition: 
       useConfigFile: true 
       configFilePath: ./GitVersion.yml' 
