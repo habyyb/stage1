@@ -11,11 +11,14 @@ jobs:
   steps: 
   - checkout: self
     fetchDepth: 0
+  - script: dotnet tool install -g GitVersion.Tool
+    displayName: 'Install dotnet-gitversion'
   
   - task: gitversion/execute@0
     inputs:
       useConfigFile: true 
-      configFilePath: './GitVersion.yml' 
+      configFilePath: './GitVersion.yml'
+      executablesPath: '/home/lenovo/.dotnet/tools/dotnet-gitversion' # Replace with the actual path
 
   - script: echo current version is $(GitVersion.SemVer) 
     displayName: 'Display calculated version' 
