@@ -1,0 +1,22 @@
+trigger: 
+- main 
+
+
+jobs: 
+- job: BuildAndTest
+  workspace: 
+    clean: all 
+  pool: 
+    name: Self-Hosted-Agent 
+  steps: 
+  - task: gitversion/execute@e 
+    inputs: 
+      useConfigFile: true 
+      configFilePath: ./GitVersion.yml' 
+  - script: echo current version is $(GitVersion.SemVer) 
+    displayName: 'Display calculated version' 
+  - task: Bash@3 
+    inputs: 
+      targetType: inline 
+      script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
+    displayName: 'Update build number'
