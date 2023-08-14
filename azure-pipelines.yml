@@ -69,3 +69,31 @@ jobs:
         csmParametersFile: '$(Agent.BuildDirectory)\$(artifactName)\storage-account-for-artifacts\azuredeploy.parameters.json'
         deploymentMode: 'Incremental'
         deploymentOutputs: 'armOutputs'
+        
+        
+  - task: TerraformInstaller@0
+    displayName: install Terraform 
+    inputs:
+      terraformVersion: 'latest'
+
+  - task: TerraformTaskV1@0
+    displayName: terraform init
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
+      backendServiceArm: '$(subscriptionName)'
+      backendAzureRmResourceGroupName: '$(resourceGroupName)'
+      backendAzureRmStorageAccountName: '$(storageAccount)'
+      backendAzureRmContainerName: '$(container)'
+      backendAzureRmKey: '$(tfstateFile)'
+
+  - task: TerraformTaskV1@0
+    displayName: terraform plan -out=tfplan
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
+      commandOptions: '-out=tfplan'
+      # commandOptions: '-detailed-exitcode -out=tfplan'
+      environmentServiceNameAzureRM: '$(subscriptionName)'
