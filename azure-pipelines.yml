@@ -5,8 +5,8 @@ jobs:
 - job: BuildAndTest
   workspace: 
     clean: all 
-  pool:
-    vmImage: ubuntu-latest
+  pool: my-personal-computer
+    
    
   steps: 
   - task: gitversion/execute@0
