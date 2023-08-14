@@ -51,3 +51,19 @@ jobs:
         csmParametersFile: '$(Agent.BuildDirectory)\$(artifactName)\resource-group\azuredeploy.parameters.json'
         deploymentMode: 'Incremental'
         deploymentOutputs: 'armOutputs'
+        
+        
+  - task: AzureResourceManagerTemplateDeployment@3
+    displayName: Create a storage account for deployment artifacts
+    inputs:
+        deploymentScope: 'Resource Group'
+        ConnectedServiceName: $(subscriptionName)
+        subscriptionName: $(subscriptionId)
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: '$(resourceGroupName)'
+        location: $(location)
+        templateLocation: 'Linked artifact'
+        csmFile: '$(Agent.BuildDirectory)\$(artifactName)\storage-account-for-artifacts\azuredeploy.json'
+        csmParametersFile: '$(Agent.BuildDirectory)\$(artifactName)\storage-account-for-artifacts\azuredeploy.parameters.json'
+        deploymentMode: 'Incremental'
+        deploymentOutputs: 'armOutputs'
