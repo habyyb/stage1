@@ -18,7 +18,7 @@ jobs:
 
   
    
-  # steps: 
+  steps: 
   # - checkout: self
   #   fetchDepth: 0
   
