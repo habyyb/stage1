@@ -16,6 +16,7 @@ jobs:
   - task: gitversion/execute@0
     inputs:
       useConfigFile: true 
+      targetPath: /home/lenovo/myagent/chabchoubhabib123/1/s
 
   - script: echo current version is $(GitVersion.SemVer) 
     displayName: 'Display calculated version' 
