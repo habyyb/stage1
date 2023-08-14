@@ -5,6 +5,8 @@ jobs:
 - job: BuildAndTest
   workspace: 
     clean: all 
+  pool:
+    vmImage: ubuntu-latest
    
   steps: 
   - task: gitversion/execute@0
