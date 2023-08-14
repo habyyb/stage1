@@ -9,7 +9,7 @@ jobs:
     
    
   steps: 
-  - task: gitversion/execute@e
+  - task: gitversion/execute@0
     inputs:
       targetPath: 'stage1'
       useConfigFile: true 
