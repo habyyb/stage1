@@ -10,10 +10,14 @@ jobs:
    
   steps: 
   - checkout: self
+  - task: gitversion/setup@0
+    displayName: Setup GitVersion
+    inputs:
+      versionSpec: '5.x'
   - task: gitversion/execute@0
     inputs:
       useConfigFile: true 
-      configFilePath: GitVersion.yml 
+      configFilePath: 'GitVersion.yml' 
   - script: echo current version is $(GitVersion.SemVer) 
     displayName: 'Display calculated version' 
   - task: Bash@3 
