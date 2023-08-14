@@ -15,7 +15,6 @@ jobs:
   - task: gitversion/execute@0
     inputs:
       useConfigFile: true 
-      configFilePath: 'GitVersion.yml' 
   - script: echo current version is $(GitVersion.SemVer) 
     displayName: 'Display calculated version' 
   - task: Bash@3 
