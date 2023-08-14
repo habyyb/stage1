@@ -1,7 +1,6 @@
 trigger: 
 - main 
 
-
 jobs: 
 - job: BuildAndTest
   workspace: 
@@ -11,8 +10,7 @@ jobs:
   steps: 
   - task: gitversion/execute@0
     inputs:
-    targetPath: 'stage1' 
-    condition: 
+      targetPath: 'stage1'
       useConfigFile: true 
       configFilePath: ./GitVersion.yml' 
   - script: echo current version is $(GitVersion.SemVer) 
