@@ -11,8 +11,7 @@ jobs:
   steps: 
   - checkout: self
     fetchDepth: 0
-  - script: dotnet tool install -g GitVersion.Tool
-    displayName: 'Install dotnet-gitversion'
+  
   
   - task: gitversion/execute@0
     inputs:
