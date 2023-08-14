@@ -37,11 +37,11 @@ jobs:
     displayName: 'Update build number'
     
     
-  jobs:
-  - deployment: DeploymentJob
-    displayName: Deploy ARM templates
-    pool:
-      vmImage: 'my-personal-computer'
+  
+- job : DeploymentJob
+  displayName: Deploy ARM templates
+  pool:
+    vmImage: 'my-personal-computer'
     environment: 'test'
     strategy:
       runOnce:
