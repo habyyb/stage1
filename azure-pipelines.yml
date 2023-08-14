@@ -14,32 +14,32 @@ variables:
 
 jobs: 
 - job: BuildAndTest
-  # workspace: 
-  #   clean: all 
+  workspace: 
+    clean: all 
 
   pool: my-personal-computer
   
 
   
-   
-  # - checkout: self
-  #   fetchDepth: 0
-  
-  
-  
-  # - task: gitversion/execute@0
-  #   inputs:
-  #     useConfigFile: true 
-  #     configFilePath: './GitVersion.yml'
-  # - script: echo current version is $(GitVersion.SemVer) 
-  #   displayName: 'Display calculated version' 
-  # - task: Bash@3 
-  #   inputs: 
-  #     targetType: inline 
-  #     script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
-  #   displayName: 'Update build number'
-    
   steps: 
+
+  - checkout: self
+    fetchDepth: 0
+  
+  
+  
+  - task: gitversion/execute@0
+    inputs:
+      useConfigFile: true 
+      configFilePath: './GitVersion.yml'
+  - script: echo current version is $(GitVersion.SemVer) 
+    displayName: 'Display calculated version' 
+  - task: Bash@3 
+    inputs: 
+      targetType: inline 
+      script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
+    displayName: 'Update build number'
+    
  
   
 
