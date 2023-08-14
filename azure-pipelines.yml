@@ -18,7 +18,6 @@ jobs:
 
   
    
-  steps: 
   # - checkout: self
   #   fetchDepth: 0
   
@@ -36,7 +35,8 @@ jobs:
   #     script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
   #   displayName: 'Update build number'
     
-    
+  steps: 
+ 
   
 
   - task: AzureResourceManagerTemplateDeployment@3
