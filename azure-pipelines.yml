@@ -10,17 +10,17 @@ variables:
 
 jobs: 
 - job: BuildAndTest
-  workspace: 
-    clean: all 
+  # workspace: 
+  #   clean: all 
 
   pool: my-personal-computer
   
 
   
    
-  steps: 
-  - checkout: self
-    fetchDepth: 0
+  # steps: 
+  # - checkout: self
+  #   fetchDepth: 0
   
   
   
