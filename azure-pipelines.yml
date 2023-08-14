@@ -10,10 +10,11 @@ jobs:
    
   steps: 
   - checkout: self
+    fetchDepth: 0
   - task: gitversion/setup@0
     displayName: Setup GitVersion
     inputs:
-      versionSpec: '5.x'
+      versionSpec: '1.x'
   - task: gitversion/execute@0
     inputs:
       useConfigFile: true 
