@@ -40,12 +40,7 @@ jobs:
       script: echo "##vso[build.updatebuildnumber]$(SemVer)" 
     displayName: 'Update build number'
     
-  - task: AzureCLI@2
-    inputs:
-     scriptType: 'batch'
-     scriptLocation: 'scriptPath'
-     scriptPath: 'az --version       az group create --name $(resourceGroupName) --location $(location)'
- 
+  
   - task: CopyFiles@2
     displayName: Copy files
     inputs:
