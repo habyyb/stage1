@@ -18,7 +18,7 @@
         }
     },
     "variables": {
-        "resourceGroupName": "rg-habiib"
+        "resourceGroupName": "storage_terraform_rg_habiib"
     },
     "resources": [
         {
