@@ -41,7 +41,18 @@ jobs:
     displayName: 'Update build number'
     
  
-  
+  - task: CopyFiles@2
+    displayName: Copy files
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName:  Publish build artifacts
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: '$(artifactName)'
 
   - task: AzureResourceManagerTemplateDeployment@3
     displayName: Create a resource group
