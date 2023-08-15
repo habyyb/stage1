@@ -7,6 +7,9 @@ variables:
   location: 'West Europe'
   # Artifact name
   artifactName: 'azure.linked-arm-templates' 
+  subscriptionName: Visual Studio Enterprise
+  subscriptionId: 5af9f377-83c8-4ec8-8520-953f65104850
+
   
 
 
